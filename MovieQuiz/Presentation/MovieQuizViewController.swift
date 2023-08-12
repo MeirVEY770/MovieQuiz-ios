@@ -65,6 +65,9 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
 
     func didReceiveNextQuestion(question: QuizQuestion?) {
+        yesButton.isEnabled = false
+        noButton.isEnabled = false
+        
         guard let question = question else {
             return
         }
@@ -113,8 +116,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         currentQuestionIndex = 0
         correctAnswers = 0
         questionFactory?.requestNextQuestion()
-        yesButton.isEnabled = true
-        noButton.isEnabled = true
     }
 
     private func showNextQuestionOrResults() {
@@ -151,8 +152,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             currentQuestionIndex += 1
             questionFactory?.requestNextQuestion()
         }
-        yesButton.isEnabled = true
-        noButton.isEnabled = true
     }
     func didLoadDataFromServer() {
         activityIndicator.isHidden = true
